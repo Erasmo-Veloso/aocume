@@ -25,3 +25,7 @@ export function productTypeLabel(type: string): string {
 export function paymentTypeLabel(type: string): string {
   return PAYMENT_TYPE_LABEL[type] ?? type;
 }
+
+export function profitBasisLabel(basis: string): string {
+  return basis === "NET" ? "lucro líquido estimado" : "lucro bruto estimado";
+}

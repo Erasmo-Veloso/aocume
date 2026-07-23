@@ -1,4 +1,5 @@
 import { SITE } from "@/lib/site";
+import { formatPrice } from "@/lib/format";
 
 /**
  * Constrói um link wa.me com mensagem pré-preenchida.
@@ -24,5 +25,23 @@ export function productEnquiryLink(product: {
 }): string {
   return whatsappLink(
     `Olá, AOCUME! Tenho interesse no produto "${product.title}" (Ref. ${product.reference}). Podem enviar-me mais informações?`
+  );
+}
+
+/**
+ * Mensagem de um Pacote de Negócio. Transporta o nome, o valor do investimento
+ * e o ID do pacote — o payload que o fluxo n8n precisa de identificar (ver
+ * docs/api.md · Package Lead).
+ */
+export function packageEnquiryLink(pkg: {
+  id: string;
+  name: string;
+  investment: number;
+  ctaLabel: string;
+}): string {
+  return whatsappLink(
+    `Olá, AOCUME! Tenho interesse no pacote de negócio *${pkg.name}* ` +
+      `(ID: ${pkg.id} · Investimento: ${formatPrice(pkg.investment)}). ` +
+      `Quero ${pkg.ctaLabel.toLowerCase()} e receber o plano detalhado para alcançar o lucro.`
   );
 }

@@ -30,6 +30,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: "Início", href: "/" },
+  { label: "Pacotes", href: "/pacotes" },
   { label: "Encomendas", href: "/encomendas" },
   { label: "Sobre", href: "/sobre" },
   { label: "Contacto", href: "/contacto" },
