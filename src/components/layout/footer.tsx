@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 import { SITE, NAV_LINKS } from "@/lib/site";
-import { CATEGORIES } from "@/data/categories";
+import { getCategories } from "@/lib/content";
 import { Logo } from "@/components/layout/logo";
 import { Container } from "@/components/layout/container";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons/social";
@@ -13,8 +13,9 @@ const socialLinks = [
   { icon: LinkedinIcon, href: SITE.social.linkedin, label: "LinkedIn" },
 ].filter((s) => s.href);
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const categories = (await getCategories()).slice(0, 5);
 
   return (
     <footer className="grain bg-ink text-white/70">
@@ -57,7 +58,7 @@ export function Footer() {
 
           <nav aria-label="Categorias" className="flex flex-col gap-3">
             <h3 className="eyebrow text-white/50">Categorias</h3>
-            {CATEGORIES.slice(0, 5).map((cat) => (
+            {categories.map((cat) => (
               <Link
                 key={cat.slug}
                 href={`/encomendas?categoria=${cat.slug}`}

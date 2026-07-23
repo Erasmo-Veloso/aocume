@@ -20,9 +20,8 @@ import { ProductCard } from "@/components/products/product-card";
 import {
   getProductBySlug,
   getRelatedProducts,
-  PRODUCTS,
-} from "@/data/products";
-import { CATEGORIES } from "@/data/categories";
+  getCategories,
+} from "@/lib/content";
 import {
   formatPrice,
   productTypeLabel,
@@ -30,9 +29,7 @@ import {
 } from "@/lib/format";
 import { productEnquiryLink } from "@/lib/whatsapp";
 
-export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -40,7 +37,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return { title: "Produto não encontrado" };
   return {
     title: product.title,
@@ -58,11 +55,13 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
-  const category = CATEGORIES.find((c) => c.slug === product.categorySlug);
-  const related = getRelatedProducts(product);
+  const category = (await getCategories()).find(
+    (c) => c.slug === product.categorySlug
+  );
+  const related = await getRelatedProducts(product);
 
   const specs = [
     { icon: Clock, label: "Prazo de entrega", value: product.deliveryTime },

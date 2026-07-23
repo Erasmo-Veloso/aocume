@@ -4,10 +4,10 @@ import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
 import { ProductCard } from "@/components/products/product-card";
-import { getFeaturedProducts } from "@/data/products";
+import { getFeaturedProducts } from "@/lib/content";
 
-export function FeaturedProducts() {
-  const products = getFeaturedProducts();
+export async function FeaturedProducts() {
+  const products = await getFeaturedProducts();
 
   return (
     <Section id="destaques">

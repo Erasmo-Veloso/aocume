@@ -79,13 +79,18 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     base: "https://images.unsplash.com/photo-1497215842964-222b430dc094",
     alt: "Escritório moderno da equipa",
     caption: "O nosso escritório",
-  },
-  {
-    base: "https://images.unsplash.com/photo-1739298061766-e2751d92e9db",
-    alt: "Equipa de profissionais a colaborar",
-    caption: "Clientes e parceiros",
-  },
+  }
 ];
+
+// Pacotes de Negócio — imagem ilustrativa por tipo de negócio (assets.md · Pacotes)
+export const PACKAGE_IMAGES: Record<string, string> = {
+  acessorios: "https://images.unsplash.com/photo-1620786963525-4a74f1697a46",
+  cosmeticos: "https://images.unsplash.com/photo-1676570092589-a6c09ecbb373",
+  electronica: "https://images.unsplash.com/photo-1761494296583-99b15e9063c5",
+  moda: "https://images.unsplash.com/photo-1767334010488-83cdb8539273",
+  minimercado: "https://images.unsplash.com/photo-1604719312497-c6fc196f51ec",
+  solar: "https://images.unsplash.com/photo-1668097613572-40b7c11c8727",
+};
 
 // Retrato do fundador — substituir pela fotografia real de Santiago Mulonga
 export const FOUNDER_IMAGE: SiteImage = {

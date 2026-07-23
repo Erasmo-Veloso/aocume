@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Package } from "lucide-react";
 
@@ -16,8 +17,17 @@ export function ProductCard({ product }: { product: Product }) {
         }}
         aria-label={product.title}
       >
-        {/* Marcador visual em vez de fotografia (v1 sem imagens reais) */}
-        <div className="absolute inset-0 grain opacity-60" aria-hidden />
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 grain opacity-60" aria-hidden />
+        )}
         <Package
           className="absolute right-4 top-4 size-8 text-white/25"
           aria-hidden

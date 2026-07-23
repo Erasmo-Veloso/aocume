@@ -1,10 +1,10 @@
 import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
 import { TestimonialCard } from "@/components/testimonial-card";
-import { getFeaturedTestimonials } from "@/data/testimonials";
+import { getFeaturedTestimonials } from "@/lib/content";
 
-export function Testimonials() {
-  const testimonials = getFeaturedTestimonials();
+export async function Testimonials() {
+  const testimonials = await getFeaturedTestimonials();
 
   return (
     <Section id="testemunhos">

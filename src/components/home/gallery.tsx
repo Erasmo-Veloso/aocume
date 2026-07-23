@@ -14,7 +14,6 @@ const items = [
   { ...GALLERY_IMAGES[2], span: "" },
   { ...FOUNDER_IMAGE, caption: "Santiago Mulonga · Fundador", span: "" },
   { ...GALLERY_IMAGES[3], span: "" },
-  { ...GALLERY_IMAGES[4], span: "sm:col-span-2" },
 ];
 
 export function Gallery() {

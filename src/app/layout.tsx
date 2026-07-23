@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { WhatsappFloating } from "@/components/whatsapp-floating";
 import { SITE } from "@/lib/site";
 
 const poppins = Poppins({
@@ -69,10 +66,7 @@ export default function RootLayout({
       className={`${poppins.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsappFloating />
+        {children}
       </body>
     </html>
   );

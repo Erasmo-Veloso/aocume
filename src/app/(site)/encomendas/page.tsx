@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { ProductCatalog } from "@/components/products/product-catalog";
-import { PRODUCTS } from "@/data/products";
-import { CATEGORIES } from "@/data/categories";
+import { getCatalog } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Encomendas",
@@ -12,14 +11,17 @@ export const metadata: Metadata = {
     "Explore produtos disponíveis para importação da China ou pronta entrega em Angola. Pesquise, filtre por categoria e peça a sua cotação pelo WhatsApp.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function EncomendasPage({
   searchParams,
 }: {
   searchParams: Promise<{ categoria?: string }>;
 }) {
   const { categoria } = await searchParams;
+  const { products, categories } = await getCatalog();
   const initialCategory =
-    categoria && CATEGORIES.some((c) => c.slug === categoria)
+    categoria && categories.some((c) => c.slug === categoria)
       ? categoria
       : "todos";
 
@@ -32,8 +34,8 @@ export default async function EncomendasPage({
       />
       <Section>
         <ProductCatalog
-          products={PRODUCTS}
-          categories={CATEGORIES}
+          products={products}
+          categories={categories}
           initialCategory={initialCategory}
         />
       </Section>

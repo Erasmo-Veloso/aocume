@@ -22,8 +22,10 @@ export interface Product {
   minimumQuantity: number;
   deliveryTime: string; // ex.: "18–25 dias"
   featured: boolean;
-  /** Cor de fundo para o marcador visual do produto (sem fotografias reais na v1). */
+  /** Cor de fundo para o marcador visual quando não há fotografia. */
   swatch: string;
+  /** URL da fotografia do produto (Supabase Storage), quando existir. */
+  image?: string | null;
 }
 
 export interface Testimonial {
@@ -40,4 +42,27 @@ export interface Service {
   icon: string; // nome do ícone Lucide
   title: string;
   description: string;
+}
+
+export type ProfitBasis = "GROSS" | "NET";
+
+export interface PackageItem {
+  label: string;
+  quantity?: string;
+}
+
+export interface BusinessPackage {
+  id: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  imageBase: string; // URL base do Unsplash (ver data/images.ts)
+  investment: number; // em AOA
+  items: PackageItem[];
+  profitMargin: string; // ex.: "40–50%"
+  estimatedReturn: string; // ex.: "≈ 320.000 Kz por ciclo"
+  profitBasis: ProfitBasis;
+  ctaLabel: string; // texto do botão de acção (configurável)
+  featured: boolean;
+  order: number;
 }
