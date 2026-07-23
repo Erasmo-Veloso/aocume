@@ -15,7 +15,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
 import { Badge } from "@/components/ui/badge";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { ProductCard } from "@/components/products/product-card";
 import {
   getProductBySlug,
@@ -27,7 +27,7 @@ import {
   productTypeLabel,
   paymentTypeLabel,
 } from "@/lib/format";
-import { productEnquiryLink } from "@/lib/whatsapp";
+import { productEnquiryMessage } from "@/lib/whatsapp";
 
 export const dynamic = "force-dynamic";
 
@@ -175,16 +175,15 @@ export default async function ProductDetailPage({
             })}
           </dl>
 
-          <LinkButton
-            href={productEnquiryLink(product)}
-            external
+          <WhatsAppLink
+            message={productEnquiryMessage(product)}
             variant="cta"
             size="xl"
             className="w-full sm:w-auto"
           >
             <MessageCircle />
             Encomendar pelo WhatsApp
-          </LinkButton>
+          </WhatsAppLink>
 
           <p className="flex items-center gap-2 text-sm text-muted-foreground">
             <ShieldCheck className="size-4 text-success" />

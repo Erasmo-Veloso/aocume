@@ -7,10 +7,10 @@ import { Menu, X, MessageCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/site";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 import { Logo } from "@/components/layout/logo";
 import { Container } from "@/components/layout/container";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -63,10 +63,10 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <LinkButton href={generalEnquiryLink()} external variant="cta" size="lg">
+          <WhatsAppLink message={generalEnquiryMessage()} variant="cta" size="lg">
             <MessageCircle />
             WhatsApp
-          </LinkButton>
+          </WhatsAppLink>
         </div>
 
         <button
@@ -98,16 +98,15 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <LinkButton
-              href={generalEnquiryLink()}
-              external
+            <WhatsAppLink
+              message={generalEnquiryMessage()}
               variant="cta"
               size="xl"
               className="mt-2 w-full"
             >
               <MessageCircle />
               Falar no WhatsApp
-            </LinkButton>
+            </WhatsAppLink>
           </Container>
         </div>
       )}

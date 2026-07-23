@@ -7,13 +7,13 @@ import { ChevronRight, Clock, MessageCircle } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { ArticleBody } from "@/components/blog/article-body";
 import { PostCard } from "@/components/blog/post-card";
 import { getPostBySlug, getOtherPosts } from "@/lib/content";
 import { unsplashSrc } from "@/data/images";
 import { SITE } from "@/lib/site";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 
 const dateFmt = new Intl.DateTimeFormat("pt-PT", {
   day: "2-digit",
@@ -131,10 +131,10 @@ export default async function ArticlePage({
                   Fale connosco e receba um plano à medida do seu negócio.
                 </p>
               </div>
-              <LinkButton href={generalEnquiryLink()} external variant="cta" size="lg">
+              <WhatsAppLink message={generalEnquiryMessage()} variant="cta" size="lg">
                 <MessageCircle />
                 Falar no WhatsApp
-              </LinkButton>
+              </WhatsAppLink>
             </div>
           </div>
         </Container>

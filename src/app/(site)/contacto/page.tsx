@@ -3,10 +3,10 @@ import { MessageCircle, Mail, Phone, MapPin, Clock } from "lucide-react";
 
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { ContactForm } from "@/components/contact/contact-form";
-import { SITE } from "@/lib/site";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { getContact } from "@/lib/content";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -14,24 +14,27 @@ export const metadata: Metadata = {
     "Fale com a AOCUME. Peça uma cotação, tire dúvidas sobre importação ou comece a sua encomenda. Resposta rápida pelo WhatsApp.",
 };
 
-const channels = [
-  {
-    icon: Phone,
-    label: "WhatsApp / Telefone",
-    value: SITE.phoneDisplay,
-    href: `https://wa.me/${SITE.whatsapp}`,
-  },
-  {
-    icon: Mail,
-    label: "E-mail",
-    value: SITE.email,
-    href: `mailto:${SITE.email}`,
-  },
-  { icon: MapPin, label: "Localização", value: SITE.address },
-  { icon: Clock, label: "Horário", value: "Seg. a Sáb. · 08h–18h" },
-];
+export const dynamic = "force-dynamic";
 
-export default function ContactoPage() {
+export default async function ContactoPage() {
+  const contact = await getContact();
+  const channels = [
+    {
+      icon: Phone,
+      label: "WhatsApp / Telefone",
+      value: contact.phone,
+      href: `https://wa.me/${contact.whatsapp}`,
+    },
+    {
+      icon: Mail,
+      label: "E-mail",
+      value: contact.email,
+      href: `mailto:${contact.email}`,
+    },
+    { icon: MapPin, label: "Localização", value: contact.address },
+    { icon: Clock, label: "Horário", value: "Seg. a Sáb. · 08h–18h" },
+  ];
+
   return (
     <>
       <PageHeader
@@ -53,16 +56,15 @@ export default function ContactoPage() {
                 Fale directamente com a nossa equipa e comece a sua encomenda
                 hoje mesmo.
               </p>
-              <LinkButton
-                href={generalEnquiryLink()}
-                external
+              <WhatsAppLink
+                message={generalEnquiryMessage()}
                 variant="cta"
                 size="xl"
                 className="mt-5 w-full"
               >
                 <MessageCircle />
                 Falar no WhatsApp
-              </LinkButton>
+              </WhatsAppLink>
             </div>
 
             <dl className="grid gap-5 sm:grid-cols-2">

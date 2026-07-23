@@ -17,9 +17,10 @@ import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
 import { Container } from "@/components/layout/container";
 import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { SITE } from "@/lib/site";
 import { FOUNDER_IMAGE, unsplashSrc } from "@/data/images";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -195,10 +196,10 @@ export default function SobrePage() {
             Pronto para começar a importar com confiança?
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <LinkButton href={generalEnquiryLink()} external variant="cta" size="xl">
+            <WhatsAppLink message={generalEnquiryMessage()} variant="cta" size="xl">
               <MessageCircle />
               Falar no WhatsApp
-            </LinkButton>
+            </WhatsAppLink>
             <LinkButton href="/encomendas" size="xl" variant="outline">
               Ver produtos
             </LinkButton>

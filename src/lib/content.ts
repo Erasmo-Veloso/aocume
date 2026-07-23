@@ -3,6 +3,8 @@ import { packageService } from "@/services/package-service";
 import { testimonialService } from "@/services/testimonial-service";
 import { categoryService } from "@/services/category-service";
 import { blogService } from "@/services/blog-service";
+import { settingsService } from "@/services/settings-service";
+import { SITE } from "@/lib/site";
 import { NotFoundError } from "@/lib/errors";
 import type {
   Product,
@@ -252,6 +254,35 @@ export async function getOtherPosts(
 ): Promise<BlogPostView[]> {
   const posts = await getBlogPosts();
   return posts.filter((p) => p.slug !== slug).slice(0, limit);
+}
+
+// ── Contactos / definições do site ───────────────────────────────
+export interface SiteContact {
+  companyName: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  address: string;
+  facebook: string;
+  instagram: string;
+  youtube: string;
+  linkedin: string;
+}
+
+/** Contactos do site: definições da BD sobre os valores por omissão (SITE). */
+export async function getContact(): Promise<SiteContact> {
+  const s = await settingsService.get();
+  return {
+    companyName: s.companyName || SITE.name,
+    email: s.email || SITE.email,
+    phone: s.phone || SITE.phoneDisplay,
+    whatsapp: s.whatsapp || SITE.whatsapp,
+    address: s.address || SITE.address,
+    facebook: s.facebook || SITE.social.facebook,
+    instagram: s.instagram || SITE.social.instagram,
+    youtube: s.youtube || SITE.social.youtube,
+    linkedin: s.linkedin || SITE.social.linkedin,
+  };
 }
 
 // ── Categorias ───────────────────────────────────────────────────

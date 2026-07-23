@@ -3,7 +3,8 @@ import { MessageCircle, Plane, Ship, Warehouse, ArrowRight } from "lucide-react"
 
 import { Container } from "@/components/layout/container";
 import { LinkButton } from "@/components/ui/link-button";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { WhatsAppLink } from "@/components/whatsapp-link";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 import { HERO_IMAGE, unsplashSrc } from "@/data/images";
 
 const routeStops = [
@@ -63,15 +64,14 @@ export function Hero() {
               Fazer encomenda
               <ArrowRight />
             </LinkButton>
-            <LinkButton
-              href={generalEnquiryLink()}
-              external
+            <WhatsAppLink
+              message={generalEnquiryMessage()}
               size="xl"
               className="border border-white/20 bg-transparent text-white hover:bg-white/10"
             >
               <MessageCircle />
               Falar no WhatsApp
-            </LinkButton>
+            </WhatsAppLink>
           </div>
 
           <dl className="mt-4 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-6">

@@ -5,9 +5,9 @@ import { Check, TrendingUp, ArrowUpRight } from "lucide-react";
 import type { BusinessPackage } from "@/types";
 import { formatPrice, profitBasisLabel } from "@/lib/format";
 import { unsplashSrc } from "@/data/images";
-import { packageEnquiryLink } from "@/lib/whatsapp";
+import { packageEnquiryMessage } from "@/lib/whatsapp";
 import { Badge } from "@/components/ui/badge";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 
 export function PackageCard({ pkg }: { pkg: BusinessPackage }) {
   const visibleItems = pkg.items.slice(0, 3);
@@ -99,15 +99,14 @@ export function PackageCard({ pkg }: { pkg: BusinessPackage }) {
             {formatPrice(pkg.investment)} · {profitBasisLabel(pkg.profitBasis)}
           </span>
           <div className="flex items-center gap-3">
-            <LinkButton
-              href={packageEnquiryLink(pkg)}
-              external
+            <WhatsAppLink
+              message={packageEnquiryMessage(pkg)}
               variant="cta"
               size="lg"
               className="flex-1"
             >
               {pkg.ctaLabel}
-            </LinkButton>
+            </WhatsAppLink>
             <Link
               href={`/pacotes/${pkg.slug}`}
               className="inline-flex items-center gap-1 text-sm font-medium text-ink transition-colors hover:text-gold-strong"

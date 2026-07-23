@@ -2,20 +2,23 @@ import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 import { SITE, NAV_LINKS } from "@/lib/site";
-import { getCategories } from "@/lib/content";
+import { getCategories, getContact } from "@/lib/content";
 import { Logo } from "@/components/layout/logo";
 import { Container } from "@/components/layout/container";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons/social";
 
-const socialLinks = [
-  { icon: FacebookIcon, href: SITE.social.facebook, label: "Facebook" },
-  { icon: InstagramIcon, href: SITE.social.instagram, label: "Instagram" },
-  { icon: LinkedinIcon, href: SITE.social.linkedin, label: "LinkedIn" },
-].filter((s) => s.href);
-
 export async function Footer() {
   const year = new Date().getFullYear();
-  const categories = (await getCategories()).slice(0, 5);
+  const [categories, contact] = await Promise.all([
+    getCategories().then((c) => c.slice(0, 5)),
+    getContact(),
+  ]);
+
+  const socialLinks = [
+    { icon: FacebookIcon, href: contact.facebook, label: "Facebook" },
+    { icon: InstagramIcon, href: contact.instagram, label: "Instagram" },
+    { icon: LinkedinIcon, href: contact.linkedin, label: "LinkedIn" },
+  ].filter((s) => s.href);
 
   return (
     <footer className="grain bg-ink text-white/70">
@@ -78,24 +81,24 @@ export async function Footer() {
           <div className="flex flex-col gap-3">
             <h3 className="eyebrow text-white/50">Contacto</h3>
             <a
-              href={`https://wa.me/${SITE.whatsapp}`}
+              href={`https://wa.me/${contact.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm transition-colors hover:text-gold"
             >
               <Phone className="size-4 shrink-0 text-gold" />
-              {SITE.phoneDisplay}
+              {contact.phone}
             </a>
             <a
-              href={`mailto:${SITE.email}`}
+              href={`mailto:${contact.email}`}
               className="flex items-center gap-3 text-sm transition-colors hover:text-gold"
             >
               <Mail className="size-4 shrink-0 text-gold" />
-              {SITE.email}
+              {contact.email}
             </a>
             <p className="flex items-center gap-3 text-sm">
               <MapPin className="size-4 shrink-0 text-gold" />
-              {SITE.address}
+              {contact.address}
             </p>
           </div>
         </div>

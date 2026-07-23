@@ -17,12 +17,12 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionTitle } from "@/components/layout/section-title";
 import { Badge } from "@/components/ui/badge";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { PackageCard } from "@/components/packages/package-card";
 import { getPackageBySlug, getOtherPackages } from "@/lib/content";
 import { formatPrice, profitBasisLabel } from "@/lib/format";
 import { unsplashSrc } from "@/data/images";
-import { packageEnquiryLink } from "@/lib/whatsapp";
+import { packageEnquiryMessage } from "@/lib/whatsapp";
 
 export const dynamic = "force-dynamic";
 
@@ -142,16 +142,15 @@ export default async function PackageDetailPage({
             </div>
           </div>
 
-          <LinkButton
-            href={packageEnquiryLink(pkg)}
-            external
+          <WhatsAppLink
+            message={packageEnquiryMessage(pkg)}
             variant="cta"
             size="xl"
             className="w-full sm:w-auto"
           >
             <MessageCircle />
             {pkg.ctaLabel}
-          </LinkButton>
+          </WhatsAppLink>
 
           <p className="flex items-center gap-2 text-sm text-muted-foreground">
             <ShieldCheck className="size-4 text-success" />
@@ -216,16 +215,15 @@ export default async function PackageDetailPage({
                 </li>
               ))}
             </ul>
-            <LinkButton
-              href={packageEnquiryLink(pkg)}
-              external
+            <WhatsAppLink
+              message={packageEnquiryMessage(pkg)}
               variant="cta"
               size="lg"
               className="mt-auto w-full sm:w-fit"
             >
               <MessageCircle />
               {pkg.ctaLabel}
-            </LinkButton>
+            </WhatsAppLink>
           </div>
         </div>
       </Section>

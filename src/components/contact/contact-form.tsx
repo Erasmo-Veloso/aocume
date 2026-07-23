@@ -6,7 +6,8 @@ import { Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { whatsappLink } from "@/lib/whatsapp";
+import { waLink } from "@/lib/whatsapp";
+import { useSiteSettings } from "@/components/site-settings";
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
@@ -19,6 +20,7 @@ type Errors = Partial<Record<"name" | "email" | "message", string>>;
  * gravar-se a mensagem na base de dados em paralelo.
  */
 export function ContactForm() {
+  const { whatsapp } = useSiteSettings();
   const [errors, setErrors] = useState<Errors>({});
 
   function validate(data: {
@@ -58,7 +60,7 @@ export function ContactForm() {
       `Contactos: ${data.email}` +
       (data.phone ? ` · ${data.phone}` : "");
 
-    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
+    window.open(waLink(whatsapp, text), "_blank", "noopener,noreferrer");
   }
 
   return (

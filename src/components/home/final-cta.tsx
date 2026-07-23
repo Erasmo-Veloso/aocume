@@ -2,7 +2,8 @@ import { MessageCircle, ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { LinkButton } from "@/components/ui/link-button";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { WhatsAppLink } from "@/components/whatsapp-link";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 
 export function FinalCta() {
   return (
@@ -23,15 +24,10 @@ export function FinalCta() {
               O primeiro passo para o seu negócio importar com confiança.
             </p>
             <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-              <LinkButton
-                href={generalEnquiryLink()}
-                external
-                variant="cta"
-                size="xl"
-              >
+              <WhatsAppLink message={generalEnquiryMessage()} variant="cta" size="xl">
                 <MessageCircle />
                 Pedir cotação
-              </LinkButton>
+              </WhatsAppLink>
               <LinkButton
                 href="/encomendas"
                 size="xl"

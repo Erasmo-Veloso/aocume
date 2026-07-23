@@ -1,5 +1,7 @@
 import { packageService } from "@/services/package-service";
-import { packageEnquiryLink } from "@/lib/whatsapp";
+import { settingsService } from "@/services/settings-service";
+import { SITE } from "@/lib/site";
+import { waLink, packageEnquiryMessage } from "@/lib/whatsapp";
 import type { PackageLeadInput } from "@/validators/package";
 
 /**
@@ -34,12 +36,17 @@ export const leadService = {
       }
     }
 
-    const whatsappUrl = packageEnquiryLink({
-      id: pkg.id,
-      name: pkg.name,
-      investment: pkg.investment,
-      ctaLabel: pkg.ctaLabel,
-    });
+    const settings = await settingsService.get();
+    const whatsapp = settings.whatsapp || SITE.whatsapp;
+    const whatsappUrl = waLink(
+      whatsapp,
+      packageEnquiryMessage({
+        id: pkg.id,
+        name: pkg.name,
+        investment: pkg.investment,
+        ctaLabel: pkg.ctaLabel,
+      })
+    );
 
     return { payload, whatsappUrl, forwarded };
   },

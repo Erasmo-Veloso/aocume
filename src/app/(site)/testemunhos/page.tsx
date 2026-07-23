@@ -4,10 +4,10 @@ import { MessageCircle } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
-import { LinkButton } from "@/components/ui/link-button";
+import { WhatsAppLink } from "@/components/whatsapp-link";
 import { MediaTestimonials } from "@/components/testimonials/media-testimonials";
 import { getAllTestimonials } from "@/lib/content";
-import { generalEnquiryLink } from "@/lib/whatsapp";
+import { generalEnquiryMessage } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Testemunhos",
@@ -40,10 +40,10 @@ export default async function TestemunhosPage() {
           <p className="max-w-md text-white/70">
             Comece a sua importação hoje e junte-se a quem já cresceu com a AOCUME.
           </p>
-          <LinkButton href={generalEnquiryLink()} external variant="cta" size="xl">
+          <WhatsAppLink message={generalEnquiryMessage()} variant="cta" size="xl">
             <MessageCircle />
             Falar no WhatsApp
-          </LinkButton>
+          </WhatsAppLink>
         </div>
       </Container>
     </>
