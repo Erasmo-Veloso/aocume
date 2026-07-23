@@ -8,9 +8,12 @@ export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
+    seed: "tsx prisma/seed.ts",
   },
   engine: "classic",
+  // As operações de CLI (db push / migrate) usam a ligação directa (session
+  // pooler, IPv4). O runtime usa DATABASE_URL (transaction pooler) do schema.
   datasource: {
-    url: env("DATABASE_URL"),
+    url: env("DIRECT_URL"),
   },
 });
