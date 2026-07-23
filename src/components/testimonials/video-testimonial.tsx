@@ -38,13 +38,13 @@ export function VideoTestimonial({
         type="button"
         onClick={() => setOpen(true)}
         aria-label={`Ver o testemunho em vídeo de ${name}`}
-        className="group/vid relative block size-full overflow-hidden"
+        className="group/vid absolute inset-0 block overflow-hidden"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${poster}?auto=format&fit=crop&w=800&q=70`}
           alt={`Testemunho de ${name}`}
-          className="size-full object-cover transition-transform duration-300 group-hover/vid:scale-105"
+          className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover/vid:scale-105"
         />
         <span className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
         <span className="absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold text-ink shadow-lg transition-transform duration-200 group-hover/vid:scale-110">

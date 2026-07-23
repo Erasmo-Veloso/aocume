@@ -20,18 +20,18 @@ function Card({ t }: { t: TestimonialView }) {
   return (
     <figure className="mb-6 flex break-inside-avoid flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)]">
       {t.format === "VIDEO" && t.image && t.videoUrl && (
-        <div className="aspect-[4/3]">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <VideoTestimonial poster={t.image} videoUrl={t.videoUrl} name={t.clientName} />
         </div>
       )}
 
       {t.format === "IMAGE" && t.image && (
-        <div className="relative aspect-[4/3]">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={unsplashSrc(t.image, 700)}
             alt={`Cliente ${t.clientName}`}
             fill
-            sizes="(max-width: 640px) 100vw, 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover"
           />
         </div>
