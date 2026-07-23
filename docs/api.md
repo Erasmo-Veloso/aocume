@@ -325,7 +325,10 @@ POST
 /api/uploads
 ```
 
-Uploads image to Supabase Storage.
+Uploads image or video to Supabase Storage. Admin only.
+
+Aceita imagens (JPG, PNG, WEBP) e vídeos (MP4, WEBM, MOV). O campo `folder`
+indica a pasta (products, packages, testimonials, blog, videos, site).
 
 Returns
 
@@ -378,6 +381,44 @@ DELETE
 ```http
 /api/testimonials/:id
 ```
+
+---
+
+# Blog
+
+## List Posts
+
+GET
+
+```http
+/api/blog
+```
+
+Public. Query: `category`, `featured`, `page`, `limit`. Apenas artigos publicados.
+
+---
+
+## Get Post
+
+GET
+
+```http
+/api/blog/:slug
+```
+
+Public. Só devolve artigos publicados.
+
+---
+
+## Create / Update / Delete Post
+
+```http
+POST   /api/blog
+PUT    /api/blog/:id
+DELETE /api/blog/:id
+```
+
+Admin only. `content` em Markdown; `readingMinutes` calculado no servidor.
 
 ---
 

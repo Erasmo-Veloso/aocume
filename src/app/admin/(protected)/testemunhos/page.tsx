@@ -21,6 +21,9 @@ export default async function AdminTestimonialsPage() {
           position: t.position,
           content: t.content,
           photo: t.photo,
+          videoUrl: t.videoUrl,
+          format: t.format,
+          rating: t.rating,
           featured: t.featured,
         }))}
       />

@@ -2,9 +2,19 @@ import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 
 /**
- * Cria (se ainda não existir) o bucket público de imagens no Supabase Storage.
- * Correr uma vez: `npm run storage:setup`.
+ * Cria ou actualiza o bucket público de media (imagens + vídeos) no Supabase
+ * Storage. Correr: `npm run storage:setup` (idempotente).
  */
+const MIME = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "video/mp4",
+  "video/webm",
+  "video/quicktime",
+];
+const SIZE = "50MB";
+
 async function main() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -24,19 +34,18 @@ async function main() {
   const { data: buckets, error: listErr } = await supabase.storage.listBuckets();
   if (listErr) throw listErr;
 
+  const opts = { public: true, fileSizeLimit: SIZE, allowedMimeTypes: MIME };
+
   if (buckets?.some((b) => b.name === bucket)) {
-    console.log(`✔ Bucket "${bucket}" já existe.`);
+    const { error } = await supabase.storage.updateBucket(bucket, opts);
+    if (error) throw error;
+    console.log(`✔ Bucket "${bucket}" actualizado (imagens + vídeos, ${SIZE}).`);
     return;
   }
 
-  const { error } = await supabase.storage.createBucket(bucket, {
-    public: true,
-    fileSizeLimit: "5MB",
-    allowedMimeTypes: ["image/jpeg", "image/png", "image/webp"],
-  });
+  const { error } = await supabase.storage.createBucket(bucket, opts);
   if (error) throw error;
-
-  console.log(`✅ Bucket público "${bucket}" criado.`);
+  console.log(`✅ Bucket público "${bucket}" criado (imagens + vídeos, ${SIZE}).`);
 }
 
 main().catch((e) => {

@@ -31,6 +31,8 @@ Administrator
 
 Testimonial
 
+BlogPost
+
 ContactMessage
 
 SiteSettings
@@ -273,7 +275,13 @@ position
 
 photo
 
+videoUrl
+
 content
+
+format
+
+rating
 
 featured
 
@@ -281,6 +289,68 @@ createdAt
 
 updatedAt
 ```
+
+`photo` guarda a foto do cliente (IMAGE) ou o poster do vídeo (VIDEO).
+
+`videoUrl` é o URL do vídeo (VIDEO) — armazenado no Supabase Storage ou externo.
+
+`rating` é opcional, de 1 a 5.
+
+## Testimonial Format
+
+Enum
+
+```text
+TEXT
+
+IMAGE
+
+VIDEO
+```
+
+---
+
+# Blog Post
+
+```text
+id
+
+title
+
+slug
+
+excerpt
+
+cover
+
+category
+
+author
+
+content
+
+readingMinutes
+
+featured
+
+published
+
+publishedAt
+
+createdAt
+
+updatedAt
+```
+
+`content` é Markdown. `readingMinutes` é calculado automaticamente a partir do
+conteúdo. Só artigos com `published = true` aparecem publicamente.
+
+Indexes
+
+- slug
+- published
+- featured
+- category
 
 ---
 

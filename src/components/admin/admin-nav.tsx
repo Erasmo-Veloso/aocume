@@ -8,6 +8,7 @@ import {
   Boxes,
   Tag,
   Star,
+  Newspaper,
   MessageSquare,
   Settings,
 } from "lucide-react";
@@ -20,6 +21,7 @@ const links = [
   { href: "/pacotes", label: "Pacotes", icon: Boxes },
   { href: "/categorias", label: "Categorias", icon: Tag },
   { href: "/testemunhos", label: "Testemunhos", icon: Star },
+  { href: "/blog", label: "Blog", icon: Newspaper },
   { href: "/mensagens", label: "Mensagens", icon: MessageSquare },
   { href: "/definicoes", label: "Definições", icon: Settings },
 ];

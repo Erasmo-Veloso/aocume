@@ -4,7 +4,7 @@ import { HowItWorks } from "@/components/home/how-it-works";
 import { BusinessPackages } from "@/components/home/business-packages";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { Benefits } from "@/components/home/benefits";
-import { Testimonials } from "@/components/home/testimonials";
+import { TestimonialsMedia } from "@/components/home/testimonials-media";
 import { Gallery } from "@/components/home/gallery";
 import { FinalCta } from "@/components/home/final-cta";
 
@@ -19,7 +19,7 @@ export default function HomePage() {
       <BusinessPackages />
       <FeaturedProducts />
       <Benefits />
-      <Testimonials />
+      <TestimonialsMedia />
       <Gallery />
       <FinalCta />
     </>

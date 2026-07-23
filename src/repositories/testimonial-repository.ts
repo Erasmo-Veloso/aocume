@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@/generated/prisma/client";
 
 export const testimonialRepository = {
   findMany(featuredOnly = false) {
@@ -12,26 +13,11 @@ export const testimonialRepository = {
     return prisma.testimonial.findUnique({ where: { id } });
   },
 
-  create(data: {
-    clientName: string;
-    position?: string | null;
-    photo?: string | null;
-    content: string;
-    featured: boolean;
-  }) {
+  create(data: Prisma.TestimonialCreateInput) {
     return prisma.testimonial.create({ data });
   },
 
-  update(
-    id: string,
-    data: {
-      clientName?: string;
-      position?: string | null;
-      photo?: string | null;
-      content?: string;
-      featured?: boolean;
-    }
-  ) {
+  update(id: string, data: Prisma.TestimonialUpdateInput) {
     return prisma.testimonial.update({ where: { id }, data });
   },
 

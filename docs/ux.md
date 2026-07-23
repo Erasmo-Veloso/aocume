@@ -135,6 +135,8 @@ Pacotes (Business Packages)
 
 Encomendas
 
+Blog
+
 Sobre
 
 Contacto

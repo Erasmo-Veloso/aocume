@@ -103,6 +103,8 @@ Version 1 includes:
 - Product details
 - Business packages catalogue and details
 - WhatsApp lead flow carrying package data (n8n-ready)
+- Testimonials (video, image and text)
+- Blog for SEO
 - Contact page
 - About page
 - Administrative dashboard

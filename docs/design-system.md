@@ -567,6 +567,10 @@ ProductCard
 
 PackageCard
 
+PostCard
+
+VideoTestimonial
+
 ServiceCard
 
 HeroSection

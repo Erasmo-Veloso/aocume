@@ -2,12 +2,14 @@ import { productService } from "@/services/product-service";
 import { packageService } from "@/services/package-service";
 import { testimonialService } from "@/services/testimonial-service";
 import { categoryService } from "@/services/category-service";
+import { blogService } from "@/services/blog-service";
 import { NotFoundError } from "@/lib/errors";
 import type {
   Product,
   BusinessPackage,
-  Testimonial,
   Category,
+  TestimonialView,
+  BlogPostView,
 } from "@/types";
 
 /**
@@ -87,14 +89,36 @@ function mapPackage(p: any): BusinessPackage {
   };
 }
 
-function mapTestimonial(t: any): Testimonial {
+function mapTestimonial(t: any): TestimonialView {
   return {
     id: t.id,
     clientName: t.clientName,
     position: t.position ?? "",
     content: t.content,
-    featured: t.featured,
+    format: t.format,
+    image: t.photo ?? null,
+    videoUrl: t.videoUrl ?? null,
+    rating: t.rating ?? null,
     initials: initialsOf(t.clientName),
+  };
+}
+
+function mapPost(p: any): BlogPostView {
+  return {
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    cover: p.cover ?? null,
+    category: p.category,
+    author: p.author,
+    date: (p.publishedAt instanceof Date
+      ? p.publishedAt
+      : new Date(p.publishedAt)
+    ).toISOString(),
+    readingMinutes: p.readingMinutes,
+    content: p.content,
+    featured: p.featured,
   };
 }
 
@@ -190,9 +214,44 @@ export async function getOtherPackages(
 }
 
 // ── Testemunhos ──────────────────────────────────────────────────
-export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
+export async function getFeaturedTestimonials(): Promise<TestimonialView[]> {
   const items = await testimonialService.list(true);
   return items.map(mapTestimonial);
+}
+
+export async function getAllTestimonials(): Promise<TestimonialView[]> {
+  const items = await testimonialService.list(false);
+  return items.map(mapTestimonial);
+}
+
+// ── Blogue ───────────────────────────────────────────────────────
+export async function getBlogPosts(): Promise<BlogPostView[]> {
+  const { items } = await blogService.listPublic({ page: 1, limit: 50 });
+  return items.map(mapPost);
+}
+
+export async function getFeaturedPost(): Promise<BlogPostView | null> {
+  const posts = await getBlogPosts();
+  return posts.find((p) => p.featured) ?? posts[0] ?? null;
+}
+
+export async function getPostBySlug(
+  slug: string
+): Promise<BlogPostView | null> {
+  try {
+    return mapPost(await blogService.getPublicBySlug(slug));
+  } catch (e) {
+    if (e instanceof NotFoundError) return null;
+    throw e;
+  }
+}
+
+export async function getOtherPosts(
+  slug: string,
+  limit = 3
+): Promise<BlogPostView[]> {
+  const posts = await getBlogPosts();
+  return posts.filter((p) => p.slug !== slug).slice(0, limit);
 }
 
 // ── Categorias ───────────────────────────────────────────────────

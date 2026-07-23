@@ -1,22 +1,24 @@
 import Link from "next/link";
-import { Package, Boxes, MessageSquare, Star, Tag } from "lucide-react";
+import { Package, Boxes, MessageSquare, Star, Tag, Newspaper } from "lucide-react";
 
 import { productService } from "@/services/product-service";
 import { packageService } from "@/services/package-service";
 import { testimonialService } from "@/services/testimonial-service";
 import { contactService } from "@/services/contact-service";
 import { categoryService } from "@/services/category-service";
+import { blogService } from "@/services/blog-service";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
-  const [products, packages, testimonials, messages, categories] =
+  const [products, packages, testimonials, messages, categories, posts] =
     await Promise.all([
       productService.listPublic({ page: 1, limit: 1 }),
       packageService.listPublic({ page: 1, limit: 1 }),
       testimonialService.list(),
       contactService.list(),
       categoryService.list(),
+      blogService.listAll(),
     ]);
 
   const unread = messages.filter((m) => !m.read).length;
@@ -26,6 +28,7 @@ export default async function AdminDashboardPage() {
     { icon: Boxes, label: "Pacotes activos", value: packages.total, href: "/pacotes" },
     { icon: Tag, label: "Categorias", value: categories.length, href: "/categorias" },
     { icon: Star, label: "Testemunhos", value: testimonials.length, href: "/testemunhos" },
+    { icon: Newspaper, label: "Artigos", value: posts.length, href: "/blog" },
     {
       icon: MessageSquare,
       label: "Mensagens",

@@ -6,21 +6,13 @@ import { UploadCloud, Loader2, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-/**
- * Upload de imagem para o Supabase Storage.
- * O ficheiro é enviado para /api/uploads (autenticado); o servidor grava no
- * bucket e devolve o URL público. Também aceita colar um URL manualmente.
- */
-export function ImageUpload({
+/** Upload de vídeo para o Supabase Storage (ou colar um URL de vídeo). */
+export function VideoUpload({
   value,
   onChange,
-  folder,
-  label = "Imagem",
 }: {
   value: string;
   onChange: (url: string) => void;
-  folder: "products" | "packages" | "testimonials" | "blog" | "site";
-  label?: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -34,7 +26,7 @@ export function ImageUpload({
     try {
       const fd = new FormData();
       fd.append("file", file);
-      fd.append("folder", folder);
+      fd.append("folder", "videos");
       const res = await fetch("/api/uploads", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) {
@@ -51,71 +43,49 @@ export function ImageUpload({
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-ink">{label}</span>
+      <span className="text-sm font-medium text-ink">Vídeo</span>
 
-      {value ? (
+      {value && (
         <div className="relative w-fit">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={value}
-            alt="Pré-visualização"
-            className="h-40 w-64 rounded-xl border border-border object-cover"
-          />
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video src={value} controls className="h-40 w-64 rounded-xl border border-border bg-black object-cover" />
           <button
             type="button"
             onClick={() => onChange("")}
-            aria-label="Remover imagem"
+            aria-label="Remover vídeo"
             className="absolute -right-2 -top-2 inline-flex size-7 items-center justify-center rounded-full bg-ink text-white shadow"
           >
             <X className="size-4" />
           </button>
         </div>
-      ) : (
-        <button
-          type="button"
-          onClick={() => inputRef.current?.click()}
-          disabled={uploading}
-          className="flex h-40 w-64 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-border bg-surface text-muted-foreground transition-colors hover:border-gold hover:text-ink"
-        >
-          {uploading ? (
-            <Loader2 className="size-6 animate-spin" />
-          ) : (
-            <UploadCloud className="size-6" />
-          )}
-          <span className="text-sm font-medium">
-            {uploading ? "A carregar…" : "Carregar imagem"}
-          </span>
-          <span className="text-xs">JPG, PNG ou WEBP · máx. 5MB</span>
-        </button>
       )}
 
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        className="hidden"
-        onChange={handleFile}
-      />
-
-      {value && (
+      <div className="flex items-center gap-2">
         <Button
           type="button"
           variant="outline"
           size="sm"
-          className="w-fit"
           onClick={() => inputRef.current?.click()}
           disabled={uploading}
         >
           {uploading ? <Loader2 className="animate-spin" /> : <UploadCloud />}
-          Substituir
+          {uploading ? "A carregar…" : "Carregar vídeo"}
         </Button>
-      )}
+        <span className="text-xs text-muted-foreground">MP4, WEBM ou MOV · máx. 50MB</span>
+      </div>
+
+      <input
+        ref={inputRef}
+        type="file"
+        accept="video/mp4,video/webm,video/quicktime"
+        className="hidden"
+        onChange={handleFile}
+      />
 
       <Input
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="ou cole um URL de imagem"
-        className="mt-1"
+        placeholder="ou cole um URL de vídeo (MP4)"
       />
 
       {error && <p className="text-xs text-destructive">{error}</p>}

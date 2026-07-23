@@ -38,12 +38,28 @@ const packages = [
   { name: "Mini-Mercado & Utilidades", slug: "mini-mercado-utilidades", tagline: "Monte um ponto de venda de bairro com utilidades domésticas e electrodomésticos.", image: "https://images.unsplash.com/photo-1604719312497-c6fc196f51ec", investment: 1500000, profitMargin: "30–40%", estimatedReturn: "≈ 500.000 Kz por ciclo", profitBasis: "GROSS", ctaLabel: "Solicitar Cotação", featured: false, position: 6, items: [["Arca congeladora", "1 un."], ["Pequenos electrodomésticos", "sortido"], ["Utilidades domésticas", "sortido"], ["Prateleiras", "1 conj."], ["Stock inicial variado", "1 conj."]] },
 ] as const;
 
-// ── Testemunhos ──────────────────────────────────────────────────
+// ── Testemunhos (vídeo + imagem + texto) ─────────────────────────
+const V1 = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
+const V2 = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4";
+
 const testimonials = [
-  { clientName: "Domingas Faria", position: "Comércio de electrónica · Luanda", content: "Importei o meu primeiro lote de telemóveis com a AOCUME sem nunca ter saído de Luanda. Explicaram cada passo e a mercadoria chegou como combinado.", featured: true },
-  { clientName: "Nelson Cabral", position: "Instalador de energia solar · Benguela", content: "Precisava de kits solares fiáveis e a preço competitivo. A equipa verificou o fornecedor na origem e poupei bastante.", featured: true },
-  { clientName: "Aline Sebastião", position: "Salão de beleza · Huambo", content: "O acompanhamento pelo WhatsApp fez toda a diferença. Respondiam sempre e senti confiança para avançar.", featured: true },
-  { clientName: "Paulo Kiala", position: "Retalhista · Lubango", content: "Fiz a formação e hoje faço as minhas próprias encomendas. O melhor investimento que fiz este ano.", featured: false },
+  { clientName: "Nelson Cabral", position: "Energia solar · Benguela", content: "Filmei a minha experiência: importei kits solares com a AOCUME e o processo foi transparente do início ao fim.", format: "VIDEO", photo: "https://images.unsplash.com/photo-1650490323009-96fc950a959c", videoUrl: V1, rating: 5, featured: true },
+  { clientName: "Domingas Faria", position: "Comércio de electrónica · Luanda", content: "Em vídeo é mais fácil de acreditar: recebi o meu primeiro lote de telemóveis exactamente como combinado.", format: "VIDEO", photo: "https://images.unsplash.com/photo-1573497019418-b400bb3ab074", videoUrl: V2, rating: 5, featured: true },
+  { clientName: "Aline Sebastião", position: "Salão de beleza · Huambo", content: "O acompanhamento pelo WhatsApp fez toda a diferença. Hoje o meu salão vende produtos que importei com eles.", format: "IMAGE", photo: "https://images.unsplash.com/photo-1765648684630-ac9c15ac98d5", videoUrl: null, rating: 5, featured: true },
+  { clientName: "Paulo Kiala", position: "Retalhista · Lubango", content: "Comecei com um pacote de acessórios e hoje faço as minhas próprias encomendas. Mudou o meu negócio.", format: "IMAGE", photo: "https://images.unsplash.com/photo-1761370571806-886404629697", videoUrl: null, rating: 5, featured: true },
+  { clientName: "Kiluanji Manuel", position: "Importador · Cabinda", content: "Já tinha sido enganado com um fornecedor chinês. Com a AOCUME, a mercadoria é verificada antes de sair. Recomendo.", format: "TEXT", photo: null, videoUrl: null, rating: 5, featured: false },
+  { clientName: "Beatriz Ndala", position: "Loja de cosméticos · Luanda", content: "Explicaram-me tudo com paciência, mesmo sendo a minha primeira importação. Senti confiança para avançar.", format: "TEXT", photo: null, videoUrl: null, rating: 5, featured: false },
+] as const;
+
+// ── Blogue ───────────────────────────────────────────────────────
+const IMG = (id: string) => `https://images.unsplash.com/${id}`;
+const blogPosts = [
+  { slug: "como-importar-da-china-em-6-passos", title: "Como importar da China em 6 passos (sem cometer erros)", excerpt: "Um guia claro do primeiro contacto à entrega em Angola — o mesmo processo que usamos com os nossos clientes.", cover: IMG("photo-1601311852860-1d8f42381551"), category: "Guia", author: "Santiago Mulonga", featured: true, readingMinutes: 7, content: "Importar da China deixou de ser exclusivo das grandes empresas. Com o processo certo, qualquer empreendedor angolano pode trazer produtos com qualidade e boa margem.\n\n## 1. Escolha o produto certo\nComece pela procura do seu mercado, não pelo que é barato na origem.\n\n## 2. Verifique o fornecedor\nConfirme a fábrica, peça amostras e valide certificações antes de pagar.\n\n## 3. Peça a cotação completa\nPreço, quantidade mínima, prazo e condições de pagamento — tudo claro.\n\n## 4. Pague com segurança\nUse um sinal e liquide o restante mediante verificação da mercadoria.\n\n## 5. Transporte e desembaraço\nMarítimo é mais barato, aéreo mais rápido. A documentação tem de estar correcta.\n\n## 6. Receba e comece a vender\nUm bom preço de compra dá-lhe margem para competir." },
+  { slug: "quanto-custa-importar-para-angola", title: "Quanto custa realmente importar para Angola?", excerpt: "Para além do preço do produto: frete, desembaraço, taxas e a margem que sobra.", cover: IMG("photo-1673896493356-6684ede37a7d"), category: "Custos", author: "Equipa AOCUME", featured: false, readingMinutes: 6, content: "O preço na fábrica é apenas o início. Para saber se compensa, some todos os custos até à sua loja.\n\n## Os custos que contam\n- Preço do produto (FOB)\n- Transporte internacional\n- Seguro de carga\n- Desembaraço e taxas\n- Transporte interno\n\nSó depois consegue calcular a margem real." },
+  { slug: "produtos-com-maior-margem-para-revender", title: "5 produtos com maior margem para revender em Angola", excerpt: "Categorias com procura forte e boa rentabilidade para quem está a começar.", cover: IMG("photo-1587293852726-70cdb56c2866"), category: "Negócio", author: "Santiago Mulonga", featured: false, readingMinutes: 5, content: "Nem todos os produtos dão o mesmo lucro. Estas categorias combinam procura estável com boas margens:\n\n- Acessórios de telemóvel\n- Beleza e cuidado pessoal\n- Pequenos electrodomésticos\n- Energia solar\n- Moda e vestuário\n\nCada uma está disponível como Pacote de Negócio pronto a seguir." },
+  { slug: "onde-encontrar-fornecedores-na-china", title: "Alibaba, 1688 ou feiras: onde encontrar fornecedores", excerpt: "As principais formas de encontrar fabricantes na China e como evitar intermediários.", cover: IMG("photo-1606836591695-4d58a73eba1e"), category: "Sourcing", author: "Equipa AOCUME", featured: false, readingMinutes: 6, content: "Encontrar o fornecedor certo é metade do sucesso.\n\n## As opções mais comuns\n- **Alibaba** — grande variedade, ideal para começar\n- **1688** — preços de origem, mas em chinês\n- **Feiras** — contacto directo com fabricantes\n\nO nosso trabalho é chegar ao fabricante real e negociar em seu nome." },
+  { slug: "como-evitar-fraudes-ao-importar", title: "Como evitar fraudes ao importar da China", excerpt: "Sinais de alerta e boas práticas para não perder dinheiro com fornecedores duvidosos.", cover: IMG("photo-1758599543152-a73184816eba"), category: "Segurança", author: "Santiago Mulonga", featured: false, readingMinutes: 5, content: "A maioria das fraudes acontece antes do primeiro envio.\n\n## Sinais de alerta\n- Preços muito abaixo do mercado\n- Recusa em fornecer amostras\n- Pagamento só para contas pessoais\n- Pressão para decidir rápido\n\nVerificamos cada fornecedor e a mercadoria na origem." },
+  { slug: "do-contentor-a-loja", title: "Do contentor à loja: o percurso da sua encomenda", excerpt: "Uma viagem pelos bastidores da importação — do pagamento à entrega em Angola.", cover: IMG("photo-1578575437130-527eed3abbec"), category: "Logística", author: "Equipa AOCUME", featured: false, readingMinutes: 4, content: "Depois de fechar a encomenda, começa uma operação que acompanhamos de perto.\n\n- Compra e controlo de qualidade na fábrica\n- Consolidação e envio marítimo\n- Chegada ao porto de Luanda e desembaraço\n- Entrega final ao cliente\n\nEm cada etapa, comunicação directa pelo WhatsApp." },
 ] as const;
 
 async function main() {
@@ -105,8 +121,49 @@ async function main() {
 
   // Testemunhos (recria do zero — sem chave natural)
   await prisma.testimonial.deleteMany();
-  await prisma.testimonial.createMany({ data: testimonials as unknown as [] });
+  await prisma.testimonial.createMany({
+    data: testimonials.map((t) => ({
+      clientName: t.clientName,
+      position: t.position,
+      content: t.content,
+      format: t.format,
+      photo: t.photo,
+      videoUrl: t.videoUrl,
+      rating: t.rating,
+      featured: t.featured,
+    })),
+  });
   console.log(`  ✔ ${testimonials.length} testemunhos`);
+
+  // Blogue (upsert por slug)
+  for (const p of blogPosts) {
+    await prisma.blogPost.upsert({
+      where: { slug: p.slug },
+      update: {
+        title: p.title,
+        excerpt: p.excerpt,
+        cover: p.cover,
+        category: p.category,
+        author: p.author,
+        content: p.content,
+        readingMinutes: p.readingMinutes,
+        featured: p.featured,
+      },
+      create: {
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        cover: p.cover,
+        category: p.category,
+        author: p.author,
+        content: p.content,
+        readingMinutes: p.readingMinutes,
+        featured: p.featured,
+        published: true,
+      },
+    });
+  }
+  console.log(`  ✔ ${blogPosts.length} artigos do blogue`);
 
   // Definições do site (uma linha)
   const existingSettings = await prisma.siteSettings.findFirst();

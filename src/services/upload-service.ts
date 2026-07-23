@@ -3,29 +3,46 @@ import { randomUUID } from "crypto";
 import { uploadImage } from "@/lib/storage";
 import { BadRequestError } from "@/lib/errors";
 
-const ALLOWED: Record<string, string> = {
+const IMAGE_EXT: Record<string, string> = {
   "image/jpeg": "jpg",
   "image/png": "png",
   "image/webp": "webp",
 };
 
-const MAX_MB = Number(process.env.MAX_UPLOAD_MB ?? 5);
-const MAX_BYTES = MAX_MB * 1024 * 1024;
+const VIDEO_EXT: Record<string, string> = {
+  "video/mp4": "mp4",
+  "video/webm": "webm",
+  "video/quicktime": "mov",
+};
 
-const ALLOWED_FOLDERS = new Set(["products", "packages", "testimonials", "site"]);
+const MAX_IMAGE_MB = Number(process.env.MAX_UPLOAD_MB ?? 5);
+const MAX_VIDEO_MB = Number(process.env.MAX_VIDEO_MB ?? 50);
+
+const ALLOWED_FOLDERS = new Set([
+  "products",
+  "packages",
+  "testimonials",
+  "blog",
+  "videos",
+  "site",
+]);
 
 export const uploadService = {
   async upload(file: File, folder = "site") {
     if (!file) throw new BadRequestError("Nenhum ficheiro enviado.");
 
-    const ext = ALLOWED[file.type];
+    const isVideo = file.type.startsWith("video/");
+    const ext = isVideo ? VIDEO_EXT[file.type] : IMAGE_EXT[file.type];
+
     if (!ext) {
       throw new BadRequestError(
-        "Formato inválido. Apenas JPG, PNG ou WEBP são aceites."
+        "Formato inválido. Imagens: JPG, PNG, WEBP. Vídeos: MP4, WEBM, MOV."
       );
     }
-    if (file.size > MAX_BYTES) {
-      throw new BadRequestError(`Ficheiro demasiado grande (máx. ${MAX_MB}MB).`);
+
+    const maxMb = isVideo ? MAX_VIDEO_MB : MAX_IMAGE_MB;
+    if (file.size > maxMb * 1024 * 1024) {
+      throw new BadRequestError(`Ficheiro demasiado grande (máx. ${maxMb}MB).`);
     }
 
     const safeFolder = ALLOWED_FOLDERS.has(folder) ? folder : "site";

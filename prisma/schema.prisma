@@ -31,6 +31,12 @@ enum ProfitBasis {
   NET
 }
 
+enum TestimonialFormat {
+  TEXT
+  IMAGE
+  VIDEO
+}
+
 model Administrator {
   id        String   @id @default(uuid())
   name      String?
@@ -134,16 +140,41 @@ model PackageItem {
 }
 
 model Testimonial {
-  id         String   @id @default(uuid())
-  clientName String   @map("client_name")
+  id         String            @id @default(uuid())
+  clientName String            @map("client_name")
   position   String?
-  photo      String?
+  photo      String? // foto do cliente (IMAGE) ou poster do vídeo (VIDEO)
+  videoUrl   String?           @map("video_url")
   content    String
-  featured   Boolean  @default(false)
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  format     TestimonialFormat @default(TEXT)
+  rating     Int? // 1–5
+  featured   Boolean           @default(false)
+  createdAt  DateTime          @default(now()) @map("created_at")
+  updatedAt  DateTime          @updatedAt @map("updated_at")
 
   @@map("testimonials")
+}
+
+model BlogPost {
+  id             String   @id @default(uuid())
+  title          String
+  slug           String   @unique
+  excerpt        String
+  cover          String?
+  category       String
+  author         String
+  content        String // Markdown
+  readingMinutes Int      @default(3) @map("reading_minutes")
+  featured       Boolean  @default(false)
+  published      Boolean  @default(true)
+  publishedAt    DateTime @default(now()) @map("published_at")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@index([published])
+  @@index([featured])
+  @@index([category])
+  @@map("blog_posts")
 }
 
 model ContactMessage {

@@ -54,6 +54,12 @@ export async function Footer() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/testemunhos"
+              className="text-sm transition-colors hover:text-gold"
+            >
+              Testemunhos
+            </Link>
           </nav>
 
           <nav aria-label="Categorias" className="flex flex-col gap-3">

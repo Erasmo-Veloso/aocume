@@ -27,7 +27,8 @@ Features
 - Product details
 - Business packages (investment opportunities)
 - Business package details
-- Testimonials
+- Testimonials (video, image and text)
+- Blog (SEO)
 - Responsive design
 - SEO
 - WhatsApp integration
@@ -68,7 +69,8 @@ Features
 - Product management
 - Category management
 - Business package management (create, edit, delete, activate/deactivate, values, margins, items, images, button text)
-- Testimonial management
+- Testimonial management (text, image and video + rating)
+- Blog management (Markdown articles, cover, publish/draft)
 - Website settings
 - Contact messages
 

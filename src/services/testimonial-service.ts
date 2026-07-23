@@ -1,4 +1,5 @@
 import { testimonialRepository } from "@/repositories/testimonial-repository";
+import type { Prisma } from "@/generated/prisma/client";
 import { NotFoundError } from "@/lib/errors";
 import type {
   CreateTestimonialInput,
@@ -21,14 +22,26 @@ export const testimonialService = {
       clientName: input.clientName,
       position: input.position ?? null,
       photo: input.photo ?? null,
+      videoUrl: input.videoUrl ?? null,
       content: input.content,
+      format: input.format,
+      rating: input.rating ?? null,
       featured: input.featured,
     });
   },
 
   async update(id: string, input: UpdateTestimonialInput) {
     await this.get(id);
-    return testimonialRepository.update(id, input);
+    const data: Prisma.TestimonialUpdateInput = {};
+    if (input.clientName !== undefined) data.clientName = input.clientName;
+    if (input.position !== undefined) data.position = input.position;
+    if (input.photo !== undefined) data.photo = input.photo;
+    if (input.videoUrl !== undefined) data.videoUrl = input.videoUrl;
+    if (input.content !== undefined) data.content = input.content;
+    if (input.format !== undefined) data.format = input.format;
+    if (input.rating !== undefined) data.rating = input.rating;
+    if (input.featured !== undefined) data.featured = input.featured;
+    return testimonialRepository.update(id, data);
   },
 
   async remove(id: string) {

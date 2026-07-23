@@ -160,11 +160,46 @@ milestone.
 
 Responsibilities
 
-- CRUD testimonials
+- CRUD de testemunhos
 
 Rules
 
-Only featured testimonials appear on the homepage.
+Suporta três formatos: TEXT, IMAGE e VIDEO.
+
+IMAGE usa `photo`; VIDEO usa `photo` (poster) + `videoUrl`.
+
+Só os testemunhos em destaque aparecem na página inicial.
+
+---
+
+# Blog Service
+
+Responsibilities
+
+- CRUD de artigos do blogue
+
+Rules
+
+Slug gerado automaticamente a partir do título (único).
+
+`readingMinutes` calculado a partir do conteúdo (Markdown).
+
+Só artigos publicados são devolvidos à API pública.
+
+---
+
+# Upload Service
+
+Responsibilities
+
+- Upload de imagens e vídeos para o Supabase Storage
+- Validar tipo e tamanho
+
+Formatos
+
+Imagens: JPG, PNG, WEBP (máx. 5MB). Vídeos: MP4, WEBM, MOV (máx. 50MB).
+
+Devolve o URL público do ficheiro no bucket.
 
 ---
 
@@ -176,24 +211,6 @@ Responsibilities
 - Store message
 
 No email sending in Version 1.
-
----
-
-# Upload Service
-
-Responsibilities
-
-- Upload image
-- Validate file type
-- Return secure URL
-
-Allowed formats
-
-- JPG
-- PNG
-- WEBP
-
-Maximum file size should be configurable.
 
 ---
 

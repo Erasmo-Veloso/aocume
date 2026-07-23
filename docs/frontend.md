@@ -117,6 +117,26 @@ Contains
 
 ---
 
+## Testimonials
+
+Parede de testemunhos em três formatos: vídeo (lightbox), imagem e texto,
+com avaliação por estrelas. Alimentada pela base de dados.
+
+---
+
+## Blog
+
+Purpose
+
+Melhorar o SEO e educar os clientes.
+
+Pages
+
+- Lista de artigos (destaque + grelha + categorias)
+- Artigo (Markdown, meta, capa, artigos relacionados, JSON-LD, CTA)
+
+---
+
 # Administrative Pages
 
 ## Login
@@ -197,7 +217,13 @@ Fields
 
 ## Testimonials
 
-CRUD interface.
+CRUD interface (formato texto/imagem/vídeo, foto/poster, vídeo, avaliação).
+
+---
+
+## Blog
+
+CRUD interface. Conteúdo em Markdown; capa e imagens via Supabase Storage.
 
 ---
 
@@ -246,7 +272,10 @@ Editable website information.
 - ServiceCard
 - ProductCard
 - PackageCard
-- TestimonialCard
+- MediaTestimonials
+- VideoTestimonial
+- PostCard
+- ArticleBody
 - ContactForm
 - ProductGallery
 - CategoryFilter

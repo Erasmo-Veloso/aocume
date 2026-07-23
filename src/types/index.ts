@@ -45,6 +45,35 @@ export interface Service {
 }
 
 export type ProfitBasis = "GROSS" | "NET";
+export type TestimonialFormat = "TEXT" | "IMAGE" | "VIDEO";
+
+/** Testemunho para o site público (vídeo, imagem ou texto). */
+export interface TestimonialView {
+  id: string;
+  clientName: string;
+  position: string;
+  content: string;
+  format: TestimonialFormat;
+  image?: string | null; // foto do cliente ou poster do vídeo
+  videoUrl?: string | null;
+  rating?: number | null;
+  initials: string;
+}
+
+/** Artigo do blogue para o site público. Conteúdo em Markdown. */
+export interface BlogPostView {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  cover: string | null;
+  category: string;
+  author: string;
+  date: string; // ISO
+  readingMinutes: number;
+  content: string; // Markdown
+  featured: boolean;
+}
 
 export interface PackageItem {
   label: string;

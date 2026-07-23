@@ -81,6 +81,20 @@ Realista, ambiente de negócio/retalho.
 
 ---
 
+## Testemunhos
+
+Formatos: vídeo (MP4 no Supabase Storage + poster), imagem (foto do cliente) e
+texto. Fotos/posters reais dos clientes; vídeos gravados pelos próprios.
+
+---
+
+## Blog
+
+Cada artigo tem uma imagem de capa (Supabase Storage ou URL). Temática:
+importação, contentores, negócio, fornecedores. Conteúdo em Markdown.
+
+---
+
 ## Benefícios
 
 Ícones:
