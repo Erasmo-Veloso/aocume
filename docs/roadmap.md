@@ -25,10 +25,33 @@ Features
 - Contact page
 - Product catalogue
 - Product details
+- Business packages (investment opportunities)
+- Business package details
 - Testimonials
 - Responsive design
 - SEO
 - WhatsApp integration
+
+---
+
+## Business Packages
+
+Status
+
+✅ Planned
+
+A new section that presents structured investment opportunities instead of only
+individual products. Each package shows the required investment, included items
+and an estimated return — a business model the client can follow. Detailed
+guidance on how to reach that return is provided through consultation.
+
+Features
+
+- Package catalogue and details
+- Investment value, included items and profit estimate per package
+- Configurable action button ("Solicitar Cotação", "Receber Detalhes", "Iniciar Projeto")
+- WhatsApp lead flow carrying package name, value and ID
+- n8n-ready payload for automated, personalized attendance (see Automation)
 
 ---
 
@@ -44,9 +67,28 @@ Features
 - Dashboard
 - Product management
 - Category management
+- Business package management (create, edit, delete, activate/deactivate, values, margins, items, images, button text)
 - Testimonial management
 - Website settings
 - Contact messages
+
+---
+
+## Automation (WhatsApp + n8n)
+
+Status
+
+✅ Planned
+
+Clicking a package action button does not open a checkout. It starts a WhatsApp
+conversation, sending the package payload (name, value, ID and — when available —
+client name and phone) to an n8n workflow. n8n identifies the package, starts a
+personalized conversation, presents the investment details, answers questions,
+collects extra information and hands over to a human consultant when needed.
+
+In Version 1 the frontend opens WhatsApp with a pre-filled message carrying the
+package identifiers. The full n8n automation is wired on the backend/integration
+milestone.
 
 ---
 
@@ -58,9 +100,8 @@ Status
 
 Features
 
-- PostgreSQL
-- Cloudinary
-- Docker
+- Supabase (PostgreSQL)
+- Supabase Storage
 - VPS deployment
 - HTTPS
 

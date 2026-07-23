@@ -211,6 +211,110 @@ Admin only.
 
 ---
 
+# Business Packages
+
+## List Packages
+
+GET
+
+```http
+/api/packages
+```
+
+Public. Supports query parameters
+
+```text
+featured
+
+active
+
+page
+
+limit
+```
+
+---
+
+## Get Package
+
+GET
+
+```http
+/api/packages/:slug
+```
+
+Public.
+
+---
+
+## Create Package
+
+POST
+
+```http
+/api/packages
+```
+
+Admin only.
+
+---
+
+## Update Package
+
+PUT
+
+```http
+/api/packages/:id
+```
+
+Admin only.
+
+---
+
+## Delete Package
+
+DELETE
+
+```http
+/api/packages/:id
+```
+
+Admin only.
+
+---
+
+## Package Lead (WhatsApp / n8n)
+
+POST
+
+```http
+/api/packages/:id/lead
+```
+
+Starts the attendance flow for a package. Forwards the payload to the n8n
+webhook, which drives the WhatsApp conversation.
+
+Payload
+
+```json
+{
+  "packageId": "",
+  "packageName": "",
+  "investment": 0,
+  "clientName": "",
+  "phone": ""
+}
+```
+
+Notes
+
+In Version 1 the public frontend opens WhatsApp directly with a pre-filled
+message carrying the package name, value and ID. This endpoint (and the n8n
+webhook) is wired on the backend/integration milestone; `clientName` and
+`phone` are included when the client is authenticated or has provided them.
+
+---
+
 # Uploads
 
 ## Upload Image
@@ -221,7 +325,7 @@ POST
 /api/uploads
 ```
 
-Uploads image to Cloudinary.
+Uploads image to Supabase Storage.
 
 Returns
 

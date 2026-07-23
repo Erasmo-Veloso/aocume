@@ -62,6 +62,25 @@ Warehouse shelves with imported products.
 
 ---
 
+## Pacotes de Negócio
+
+Cada pacote tem uma imagem ilustrativa do negócio.
+
+Imagens (por tipo de negócio):
+
+- Loja / negócio de electrónica
+- Loja de cosméticos e beleza
+- Revenda de energia solar
+- Mini-mercado / utilidades domésticas
+- Quiosque de acessórios de telemóvel
+- Loja de moda e vestuário
+
+Estilo:
+
+Realista, ambiente de negócio/retalho.
+
+---
+
 ## Benefícios
 
 Ícones:

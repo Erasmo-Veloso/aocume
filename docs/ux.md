@@ -71,6 +71,36 @@ Starts an order
 
 ---
 
+# Business Package Journey
+
+Visitor
+
+↓
+
+Sees a Business Package (investment, items, expected profit)
+
+↓
+
+Understands the opportunity and the potential return
+
+↓
+
+Wants the detailed plan on how to achieve it
+
+↓
+
+Clicks the action button
+
+↓
+
+WhatsApp conversation starts with the package data (n8n-ready)
+
+↓
+
+Receives consultation and becomes a qualified lead
+
+---
+
 # Administrator Journey
 
 Administrator
@@ -101,7 +131,7 @@ Website updates automatically
 
 Home
 
-Services (section)
+Pacotes (Business Packages)
 
 Encomendas
 
@@ -125,17 +155,19 @@ Navigation should remain visible while scrolling.
 
 4. How It Works
 
-5. Featured Products
+5. Featured Business Packages
 
-6. Benefits
+6. Featured Products
 
-7. Testimonials
+7. Benefits
 
-8. Gallery
+8. Testimonials
 
-9. Final CTA
+9. Gallery
 
-10. Footer
+10. Final CTA
+
+11. Footer
 
 Each section must naturally encourage the user to continue scrolling.
 
@@ -190,6 +222,36 @@ Present the import process in six simple steps.
 6. Delivery in Angola
 
 This section should reduce uncertainty.
+
+---
+
+# Business Packages
+
+Packages present a complete investment opportunity — a business model the client
+can follow.
+
+Each package card includes:
+
+- Illustrative image
+- Name
+- Investment value
+- Short list of included items
+- Estimated profit (gross or net)
+- Action button (Solicitar Cotação / Receber Detalhes / Iniciar Projeto)
+
+Framing:
+
+The site shows *what* the client needs and the return they can expect. The *how*
+— the exact plan to achieve that return — is delivered through consultation.
+
+Action:
+
+Clicking the button starts a WhatsApp conversation carrying the package name,
+value and ID. No checkout. In future the flow is automated with n8n and handed
+over to a human consultant.
+
+This section reduces the risk of starting a business and turns curiosity into a
+qualified lead.
 
 ---
 
@@ -295,6 +357,7 @@ Every important section should answer one of these questions:
 - Why should I trust them?
 - How does the process work?
 - What can I buy?
+- What business can I start, and what can I earn?
 - How do I contact them?
 
 If a section does not answer one of these questions, it should not exist.

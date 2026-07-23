@@ -23,6 +23,10 @@ Product
     │
     └────── ProductImage
 
+BusinessPackage
+    │
+    └────── PackageItem
+
 Administrator
 
 Testimonial
@@ -172,6 +176,92 @@ Many images
 
 ---
 
+# Business Package
+
+```text
+id
+
+name
+
+slug
+
+tagline
+
+image
+
+investment
+
+currency
+
+profitMargin
+
+estimatedReturn
+
+profitBasis
+
+ctaLabel
+
+featured
+
+active
+
+position
+
+createdAt
+
+updatedAt
+```
+
+Purpose
+
+Represent a structured investment opportunity (business model).
+
+`investment` is stored as an integer (minor unit or whole AOA).
+
+`profitBasis` indicates whether the estimate is gross or net.
+
+Enum
+
+```text
+GROSS
+
+NET
+```
+
+`ctaLabel` is the action button text (e.g. "Solicitar Cotação",
+"Receber Detalhes", "Iniciar Projeto").
+
+Relationship
+
+One package has many items.
+
+---
+
+# Package Item
+
+```text
+id
+
+packageId
+
+label
+
+quantity
+
+position
+```
+
+One business package
+
+↓
+
+Many items
+
+The full list is shown on the package details page; a short summary is shown on
+the card.
+
+---
+
 # Testimonial
 
 ```text
@@ -287,6 +377,12 @@ Product
 - featured
 - active
 
+BusinessPackage
+
+- slug
+- featured
+- active
+
 Category
 
 - slug
@@ -307,9 +403,11 @@ Category slug must be unique.
 
 Product slug must be unique.
 
+Business package slug must be unique.
+
 Administrator email must be unique.
 
-Only active products appear publicly.
+Only active products and active packages appear publicly.
 
 ---
 

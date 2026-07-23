@@ -4,9 +4,11 @@
 
 ## Project Overview
 
-AOCUME is a modern institutional platform developed to strengthen the company's digital presence, showcase its services, facilitate product orders from China, and attract new clients interested in international trade, professional training, and business consulting.
+AOCUME is a modern institutional platform developed to strengthen the company's digital presence, showcase its services, facilitate product orders from China, present ready-to-follow business opportunities, and attract new clients interested in international trade, professional training, and business consulting.
 
-The website is not intended to be a traditional e-commerce platform. Instead, it serves as a professional sales and communication channel, where users discover products and services and initiate their purchasing journey through WhatsApp or a dedicated order request.
+The website is not intended to be a traditional e-commerce platform. Instead, it serves as a professional sales and communication channel, where users discover products, services and structured business packages, and initiate their journey through WhatsApp or a dedicated request.
+
+A distinctive part of the platform is the **Business Packages** section: instead of only listing individual products, the site presents complete, structured investment opportunities. Each package shows *what* the client needs (required investment, included items and an estimated return) as a business model they can follow. The *how* — the detailed plan to actually reach that return — is delivered through consultation, started with one click via WhatsApp.
 
 The platform should communicate professionalism, trust, transparency, and expertise in international importation.
 
@@ -21,8 +23,9 @@ The website exists to:
 - Showcase the company's services and expertise.
 - Promote professional training and mentorship.
 - Display products available for import and immediate sale.
-- Generate qualified leads through WhatsApp.
-- Allow administrators to manage products without technical knowledge.
+- Present structured business packages as investment opportunities.
+- Generate qualified leads through WhatsApp (later automated with n8n).
+- Allow administrators to manage products and packages without technical knowledge.
 
 ---
 
@@ -53,6 +56,7 @@ Clients receive:
 - Safer import process
 - Local assistance
 - Practical training
+- Ready-to-follow business models with estimated returns
 
 ---
 
@@ -62,10 +66,11 @@ The first version of the platform focuses on:
 
 - Institutional presentation
 - Product catalogue
+- Business packages (investment opportunities)
 - Service presentation
 - Contact generation
 - WhatsApp integration
-- Administrative product management
+- Administrative product and package management
 
 ---
 
@@ -96,10 +101,13 @@ Version 1 includes:
 - Responsive design
 - Product catalogue
 - Product details
+- Business packages catalogue and details
+- WhatsApp lead flow carrying package data (n8n-ready)
 - Contact page
 - About page
 - Administrative dashboard
 - Product management
+- Business package management
 - Categories
 - Testimonials
 - Contact messages

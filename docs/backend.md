@@ -114,6 +114,48 @@ Slug generated automatically.
 
 ---
 
+# Business Package Service
+
+Responsibilities
+
+- Create packages
+- Update packages
+- Delete packages
+- Retrieve packages
+- Manage included items, investment value, profit estimate and action label
+- Activate / deactivate and order packages
+
+Rules
+
+Slug must be unique.
+
+Only active packages are returned to the public API.
+
+Investment and profit values are validated as non-negative numbers.
+
+---
+
+# Package Lead Service (n8n)
+
+Responsibilities
+
+- Build the package payload (name, value, ID and, when available, client name and phone)
+- Forward it to the n8n webhook that drives the WhatsApp conversation
+
+Rules
+
+No checkout is performed.
+
+The n8n workflow identifies the package, starts a personalized WhatsApp
+conversation, presents the investment details, answers questions, collects
+extra information and hands over to a human consultant when needed.
+
+In Version 1 the public frontend opens WhatsApp directly with a pre-filled
+message; the server-side forwarding to n8n is wired on the integration
+milestone.
+
+---
+
 # Testimonial Service
 
 Responsibilities
@@ -247,15 +289,21 @@ Examples
 ```text
 DATABASE_URL
 
+DIRECT_URL
+
 JWT_SECRET
 
-CLOUDINARY_CLOUD_NAME
+NEXT_PUBLIC_SUPABASE_URL
 
-CLOUDINARY_API_KEY
+SUPABASE_SERVICE_ROLE_KEY
 
-CLOUDINARY_API_SECRET
+SUPABASE_STORAGE_BUCKET
 
 NEXT_PUBLIC_SITE_URL
+
+NEXT_PUBLIC_WHATSAPP_NUMBER
+
+N8N_WEBHOOK_URL
 ```
 
 ---

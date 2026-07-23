@@ -24,12 +24,42 @@ Sections
 - Hero
 - Services
 - How It Works
+- Featured Business Packages
 - Featured Products
 - Benefits
 - Testimonials
 - Gallery
 - Final CTA
 - Footer
+
+---
+
+## Pacotes de Negócio
+
+Purpose
+
+Present structured investment opportunities (business models the client can follow).
+
+Features
+
+- Package cards
+- Package details
+- Investment value, included items and profit estimate
+- Configurable action button
+- WhatsApp lead flow with package payload
+
+---
+
+## Package Details
+
+Displays
+
+- Illustrative image
+- Investment value
+- Included items (full list)
+- Profit estimate (gross or net)
+- "What you get" vs "consult for how" framing
+- Action button → WhatsApp (carries package name, value and ID)
 
 ---
 
@@ -147,6 +177,24 @@ CRUD interface.
 
 ---
 
+## Business Packages
+
+CRUD interface.
+
+Fields
+
+- Name
+- Image
+- Investment value
+- Included items
+- Profit margin / estimated return
+- Action button label
+- Featured
+- Active
+- Order
+
+---
+
 ## Testimonials
 
 CRUD interface.
@@ -197,6 +245,7 @@ Editable website information.
 - HeroSection
 - ServiceCard
 - ProductCard
+- PackageCard
 - TestimonialCard
 - ContactForm
 - ProductGallery

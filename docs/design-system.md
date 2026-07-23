@@ -565,6 +565,8 @@ Button
 
 ProductCard
 
+PackageCard
+
 ServiceCard
 
 HeroSection

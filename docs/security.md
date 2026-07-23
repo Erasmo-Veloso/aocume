@@ -142,7 +142,7 @@ Validate:
 - File size
 - Upload success
 
-Store only secure Cloudinary URLs.
+Store only secure Supabase Storage URLs.
 
 ---
 
@@ -155,11 +155,11 @@ Examples:
 ```text
 DATABASE_URL
 
+DIRECT_URL
+
 JWT_SECRET
 
-CLOUDINARY_API_KEY
-
-CLOUDINARY_API_SECRET
+SUPABASE_SERVICE_ROLE_KEY
 ```
 
 Use:
@@ -260,7 +260,7 @@ Daily automated backups.
 
 Media:
 
-Cloudinary redundancy.
+Supabase Storage redundancy.
 
 Environment variables:
 

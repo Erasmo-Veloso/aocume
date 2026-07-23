@@ -47,11 +47,19 @@ State
 
 Storage
 
-- Cloudinary
+- Supabase Storage
+
+Database & Auth infra
+
+- Supabase (Postgres) + Prisma ORM
 
 Authentication
 
 - JWT
+
+Automation
+
+- n8n (WhatsApp lead flow for Business Packages)
 
 Deployment
 
@@ -236,11 +244,38 @@ Images
 
 ↓
 
-Cloudinary
+Supabase Storage (bucket público via SDK)
 
 ↓
 
-Store URL in database
+Store public URL in database
+
+---
+
+# Business Package Lead Flow
+
+```text
+Package action button
+
+↓
+
+WhatsApp conversation (pre-filled message with package name, value, ID)
+
+↓
+
+n8n webhook (payload: packageId, packageName, investment, clientName, phone)
+
+↓
+
+Personalized attendance / answers / data collection
+
+↓
+
+Handover to human consultant
+```
+
+Version 1 opens WhatsApp directly from the frontend; the server-side n8n
+forwarding is added on the integration milestone.
 
 ---
 

@@ -20,11 +20,9 @@ The production environment should prioritize:
 Production
 
 - Ubuntu Server
-- Docker
-- Docker Compose
 - Nginx or Traefik
-- PostgreSQL
-- Cloudinary
+- Supabase (PostgreSQL managed)
+- Supabase Storage
 - SSL (Let's Encrypt)
 
 ---
@@ -62,15 +60,21 @@ Required
 ```text
 DATABASE_URL
 
+DIRECT_URL
+
 JWT_SECRET
 
-CLOUDINARY_CLOUD_NAME
+NEXT_PUBLIC_SUPABASE_URL
 
-CLOUDINARY_API_KEY
+SUPABASE_SERVICE_ROLE_KEY
 
-CLOUDINARY_API_SECRET
+SUPABASE_STORAGE_BUCKET
 
 NEXT_PUBLIC_SITE_URL
+
+NEXT_PUBLIC_WHATSAPP_NUMBER
+
+N8N_WEBHOOK_URL
 ```
 
 Never commit environment files.
@@ -81,11 +85,11 @@ Never commit environment files.
 
 Production
 
-PostgreSQL
+Supabase (PostgreSQL)
 
-Migration
+Access
 
-Prisma Migrate
+Prisma ORM (via connection pooler at runtime; direct connection for migrations)
 
 Seed
 
@@ -95,7 +99,7 @@ Optional
 
 # Media Storage
 
-Product images are stored in Cloudinary.
+Product images are stored in Supabase Storage.
 
 Only URLs are stored in the database.
 
@@ -186,11 +190,11 @@ Keep logs outside the application container.
 
 Database
 
-Daily
+Daily (Supabase automated backups)
 
-Cloudinary
+Supabase Storage
 
-Managed externally
+Managed by Supabase
 
 Environment variables
 
