@@ -10,7 +10,7 @@ export default function NewPostPage() {
     <div className="flex flex-col gap-6">
       <div>
         <Link
-          href="/blog"
+          href="/admin/blog"
           className="mb-2 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-ink"
         >
           <ChevronLeft className="size-4" />

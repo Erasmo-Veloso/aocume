@@ -24,17 +24,17 @@ export default async function AdminDashboardPage() {
   const unread = messages.filter((m) => !m.read).length;
 
   const stats = [
-    { icon: Package, label: "Produtos activos", value: products.total, href: "/produtos" },
-    { icon: Boxes, label: "Pacotes activos", value: packages.total, href: "/pacotes" },
-    { icon: Tag, label: "Categorias", value: categories.length, href: "/categorias" },
-    { icon: Star, label: "Testemunhos", value: testimonials.length, href: "/testemunhos" },
-    { icon: Newspaper, label: "Artigos", value: posts.length, href: "/blog" },
+    { icon: Package, label: "Produtos activos", value: products.total, href: "/admin/produtos" },
+    { icon: Boxes, label: "Pacotes activos", value: packages.total, href: "/admin/pacotes" },
+    { icon: Tag, label: "Categorias", value: categories.length, href: "/admin/categorias" },
+    { icon: Star, label: "Testemunhos", value: testimonials.length, href: "/admin/testemunhos" },
+    { icon: Newspaper, label: "Artigos", value: posts.length, href: "/admin/blog" },
     {
       icon: MessageSquare,
       label: "Mensagens",
       value: messages.length,
       note: unread > 0 ? `${unread} por ler` : undefined,
-      href: "/mensagens",
+      href: "/admin/mensagens",
     },
   ];
 
@@ -81,21 +81,21 @@ export default async function AdminDashboardPage() {
       <div className="flex flex-wrap gap-3 rounded-2xl border border-dashed border-border bg-surface p-6">
         <span className="w-full text-sm font-semibold text-ink">Acções rápidas</span>
         <Link
-          href="/produtos/novo"
+          href="/admin/produtos/novo"
           className="text-sm font-medium text-gold-strong hover:underline"
         >
           + Novo produto
         </Link>
         <span className="text-border">·</span>
         <Link
-          href="/pacotes/novo"
+          href="/admin/pacotes/novo"
           className="text-sm font-medium text-gold-strong hover:underline"
         >
           + Novo pacote
         </Link>
         <span className="text-border">·</span>
         <Link
-          href="/categorias"
+          href="/admin/categorias"
           className="text-sm font-medium text-gold-strong hover:underline"
         >
           Gerir categorias

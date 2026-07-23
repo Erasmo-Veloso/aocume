@@ -33,7 +33,7 @@ export default function AdminLoginPage() {
         setError(data.message ?? "Não foi possível iniciar sessão.");
         return;
       }
-      router.replace("/");
+      router.replace("/admin");
       router.refresh();
     } catch {
       setError("Erro de ligação. Tente novamente.");

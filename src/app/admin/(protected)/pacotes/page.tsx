@@ -22,7 +22,7 @@ export default async function AdminPackagesPage() {
             {packages.length} {packages.length === 1 ? "pacote" : "pacotes"}
           </p>
         </div>
-        <LinkButton href="/pacotes/novo" variant="cta" size="lg">
+        <LinkButton href="/admin/pacotes/novo" variant="cta" size="lg">
           <Plus />
           Novo pacote
         </LinkButton>
@@ -63,7 +63,7 @@ export default async function AdminPackagesPage() {
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-2">
                     <LinkButton
-                      href={`/pacotes/${p.id}`}
+                      href={`/admin/pacotes/${p.id}`}
                       variant="outline"
                       size="sm"
                     >

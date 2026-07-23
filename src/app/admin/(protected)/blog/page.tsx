@@ -21,7 +21,7 @@ export default async function AdminBlogPage() {
             {posts.length} {posts.length === 1 ? "artigo" : "artigos"}
           </p>
         </div>
-        <LinkButton href="/blog/novo" variant="cta" size="lg">
+        <LinkButton href="/admin/blog/novo" variant="cta" size="lg">
           <Plus />
           Novo artigo
         </LinkButton>
@@ -63,7 +63,7 @@ export default async function AdminBlogPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-2">
-                    <LinkButton href={`/blog/${p.id}`} variant="outline" size="sm">
+                    <LinkButton href={`/admin/blog/${p.id}`} variant="outline" size="sm">
                       <Pencil />
                       <span className="hidden sm:inline">Editar</span>
                     </LinkButton>

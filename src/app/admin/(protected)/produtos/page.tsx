@@ -20,7 +20,7 @@ export default async function AdminProductsPage() {
             {products.length} {products.length === 1 ? "produto" : "produtos"}
           </p>
         </div>
-        <LinkButton href="/produtos/novo" variant="cta" size="lg">
+        <LinkButton href="/admin/produtos/novo" variant="cta" size="lg">
           <Plus />
           Novo produto
         </LinkButton>
@@ -63,7 +63,7 @@ export default async function AdminProductsPage() {
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-2">
                     <LinkButton
-                      href={`/produtos/${p.id}`}
+                      href={`/admin/produtos/${p.id}`}
                       variant="outline"
                       size="sm"
                     >

@@ -16,21 +16,21 @@ import {
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Início", icon: LayoutDashboard },
-  { href: "/produtos", label: "Produtos", icon: Package },
-  { href: "/pacotes", label: "Pacotes", icon: Boxes },
-  { href: "/categorias", label: "Categorias", icon: Tag },
-  { href: "/testemunhos", label: "Testemunhos", icon: Star },
-  { href: "/blog", label: "Blog", icon: Newspaper },
-  { href: "/mensagens", label: "Mensagens", icon: MessageSquare },
-  { href: "/definicoes", label: "Definições", icon: Settings },
+  { href: "/admin", label: "Início", icon: LayoutDashboard },
+  { href: "/admin/produtos", label: "Produtos", icon: Package },
+  { href: "/admin/pacotes", label: "Pacotes", icon: Boxes },
+  { href: "/admin/categorias", label: "Categorias", icon: Tag },
+  { href: "/admin/testemunhos", label: "Testemunhos", icon: Star },
+  { href: "/admin/blog", label: "Blog", icon: Newspaper },
+  { href: "/admin/mensagens", label: "Mensagens", icon: MessageSquare },
+  { href: "/admin/definicoes", label: "Definições", icon: Settings },
 ];
 
 export function AdminNav() {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
   return (
     <nav className="flex flex-col gap-1" aria-label="Navegação do painel">

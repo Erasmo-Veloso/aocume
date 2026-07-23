@@ -113,7 +113,7 @@ export function PackageForm({ initial }: { initial?: PackageFormValues }) {
       } else {
         await adminApi.post("/api/packages", payload);
       }
-      router.push("/pacotes");
+      router.push("/admin/pacotes");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao guardar.");
@@ -290,7 +290,7 @@ export function PackageForm({ initial }: { initial?: PackageFormValues }) {
           type="button"
           variant="outline"
           size="lg"
-          onClick={() => router.push("/pacotes")}
+          onClick={() => router.push("/admin/pacotes")}
         >
           Cancelar
         </Button>

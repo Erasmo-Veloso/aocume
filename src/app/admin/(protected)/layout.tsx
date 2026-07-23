@@ -11,7 +11,7 @@ export default async function ProtectedAdminLayout({
   children: React.ReactNode;
 }) {
   const session = await getSession();
-  if (!session) redirect("/login");
+  if (!session) redirect("/admin/login");
 
   return (
     <div className="min-h-screen">

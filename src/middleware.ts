@@ -1,11 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Encaminhamento por subdomínio.
+ * Encaminhamento do painel de administração.
  *
- * admin.localhost:3000 (ou admin.<domínio>) → espaço de rotas /admin.
- * No domínio público, os caminhos /admin não são acessíveis.
- * Os pedidos a /api e aos assets internos nunca são reescritos.
+ * - O painel vive no espaço de rotas /admin e está acessível em /admin em
+ *   qualquer domínio (protegido por login).
+ * - Além disso, num subdomínio admin.* (ex.: admin.aocume.co.ao) os pedidos à
+ *   raiz são normalizados para /admin, para o painel abrir directamente.
+ * - Pedidos a /api e a assets internos nunca são tocados.
  */
 export function middleware(req: NextRequest) {
   const host = (req.headers.get("host") ?? "").split(":")[0];
@@ -17,19 +19,9 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname === "/favicon.ico";
 
-  if (isAdminHost) {
-    if (isInternal || pathname === "/admin" || pathname.startsWith("/admin/")) {
-      return NextResponse.next();
-    }
+  if (isAdminHost && !isInternal && !pathname.startsWith("/admin")) {
     const url = req.nextUrl.clone();
-    url.pathname = `/admin${pathname === "/" ? "" : pathname}`;
-    return NextResponse.rewrite(url);
-  }
-
-  // Domínio público: o painel só existe no subdomínio admin.
-  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = pathname === "/" ? "/admin" : `/admin${pathname}`;
     return NextResponse.redirect(url);
   }
 

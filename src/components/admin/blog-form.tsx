@@ -66,7 +66,7 @@ export function BlogForm({ initial }: { initial?: BlogFormValues }) {
       } else {
         await adminApi.post("/api/blog", payload);
       }
-      router.push("/blog");
+      router.push("/admin/blog");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao guardar.");
@@ -139,7 +139,7 @@ export function BlogForm({ initial }: { initial?: BlogFormValues }) {
           {saving ? <Loader2 className="animate-spin" /> : <Save />}
           {isEdit ? "Guardar alterações" : "Publicar artigo"}
         </Button>
-        <Button type="button" variant="outline" size="lg" onClick={() => router.push("/blog")}>
+        <Button type="button" variant="outline" size="lg" onClick={() => router.push("/admin/blog")}>
           Cancelar
         </Button>
       </div>

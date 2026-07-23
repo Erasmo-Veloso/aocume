@@ -100,7 +100,7 @@ export function ProductForm({
       } else {
         await adminApi.post("/api/products", payload);
       }
-      router.push("/produtos");
+      router.push("/admin/produtos");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro ao guardar.");
@@ -273,7 +273,7 @@ export function ProductForm({
           type="button"
           variant="outline"
           size="lg"
-          onClick={() => router.push("/produtos")}
+          onClick={() => router.push("/admin/produtos")}
         >
           Cancelar
         </Button>
