@@ -94,6 +94,6 @@ export const PACKAGE_IMAGES: Record<string, string> = {
 
 // Retrato do fundador — substituir pela fotografia real de Santiago Mulonga
 export const FOUNDER_IMAGE: SiteImage = {
-  base: "https://images.unsplash.com/photo-1621973133111-63649acea55a",
+  base: "https://spipgdjgjldmliogujsd.supabase.co/storage/v1/object/public/aocume/assets/sm.jpeg",
   alt: "Retrato de Santiago Mulonga, fundador da AOCUME",
 };
