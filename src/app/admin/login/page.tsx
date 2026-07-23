@@ -64,7 +64,6 @@ export default function AdminLoginPage() {
                 name="email"
                 type="email"
                 autoComplete="username"
-                placeholder="admin@aocume.co.ao"
                 required
               />
             </div>

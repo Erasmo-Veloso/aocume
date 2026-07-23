@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
+  applicationName: SITE.name,
   keywords: [
     "importação",
     "China",
@@ -33,9 +34,12 @@ export const metadata: Metadata = {
     "consultoria de importação",
     "encomendas da China",
     "fornecedores chineses",
+    "pacotes de negócio",
     "AOCUME",
   ],
   authors: [{ name: SITE.name }],
+  creator: SITE.name,
+  publisher: SITE.name,
   openGraph: {
     type: "website",
     locale: "pt_AO",
@@ -53,6 +57,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0b0b0b",
+  colorScheme: "light",
 };
 
 export default function RootLayout({

@@ -5,17 +5,30 @@
  * WhatsApp, o e-mail e as redes sociais pelos dados reais da AOCUME antes de
  * publicar. Na v2 estes valores passarão a vir de SiteSettings (base de dados).
  */
+
+/**
+ * URL público do site, usado nos metadados (canónicos, Open Graph, sitemap).
+ * Prioridade: NEXT_PUBLIC_SITE_URL → URL de produção da Vercel → aocume.com.
+ * Assim o OG funciona no vercel.app antes do domínio próprio estar activo.
+ */
+function resolveSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL)
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  return "https://aocume.com";
+}
+
 export const SITE = {
   name: "AOCUME",
-  legalName: "AOCUME — Consultoria e Importação",
+  legalName: "AOCUME — Comércio Internacional",
   description:
     "A AOCUME liga empreendedores angolanos a fabricantes na China. Sourcing, importação e consultoria com acompanhamento do início ao fim.",
-  url: "https://aocume.co.ao",
+  url: resolveSiteUrl(),
 
   // Contactos (substituir pelos reais)
   whatsapp: "244923000000", // formato internacional, só dígitos
   phoneDisplay: "+244 923 000 000",
-  email: "geral@aocume.co.ao",
+  email: "geral@aocume.com",
   address: "Luanda, Angola",
 
   founder: "Santiago Mulonga",
