@@ -1,6 +1,6 @@
 import { productRepository } from "@/repositories/product-repository";
 import { categoryRepository } from "@/repositories/category-repository";
-import type { Prisma } from "@/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 import { slugify } from "@/lib/slug";
 import { BadRequestError, ConflictError, NotFoundError } from "@/lib/errors";
 import type {

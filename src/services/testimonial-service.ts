@@ -1,5 +1,5 @@
 import { testimonialRepository } from "@/repositories/testimonial-repository";
-import type { Prisma } from "@/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 import { NotFoundError } from "@/lib/errors";
 import type {
   CreateTestimonialInput,

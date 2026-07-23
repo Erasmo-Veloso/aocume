@@ -1,5 +1,5 @@
 import { packageRepository } from "@/repositories/package-repository";
-import type { Prisma } from "@/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 import { slugify } from "@/lib/slug";
 import { ConflictError, NotFoundError } from "@/lib/errors";
 import type {

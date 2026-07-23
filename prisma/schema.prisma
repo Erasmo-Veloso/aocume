@@ -6,10 +6,10 @@
 // DIRECT_URL    → ligação directa (porta 5432) — usada pelo Prisma Migrate
 
 generator client {
-  provider      = "prisma-client"
-  output        = "../src/generated/prisma"
-  // "native" para desenvolvimento local; "rhel-openssl-3.0.x" para o runtime
-  // serverless da Vercel.
+  provider      = "prisma-client-js"
+  // Output por omissão (node_modules/.prisma/client) — o Next/Vercel tratam
+  // automaticamente do motor. "native" para local; "rhel-openssl-3.0.x" para
+  // o runtime serverless da Vercel.
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
